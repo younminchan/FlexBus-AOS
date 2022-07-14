@@ -21,36 +21,40 @@
             android:layout_height="wrap_content"
             android:rotation="180"
             android:src="@drawable/icon_gray_right"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_search"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_search_input"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_search" />
+            app:layout_constraintTop_toTopOf="@+id/et_search" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/tv_search"
+            android:id="@+id/et_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/box_round_white"
+            android:inputType="number"
             android:gravity="left"
             android:hint="노선명 입력"
+            android:maxLines="1"
+            android:maxLength="50"
             android:padding="10dp"
+            android:singleLine="true"
             android:textColor="#000000"
             android:textColorHint="#F0F0F0"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_location"
+            app:layout_constraintEnd_toStartOf="@+id/tv_search_input"
             app:layout_constraintStart_toEndOf="@+id/iv_back"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_location"
+            android:id="@+id/tv_search_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/box_round_white"
             android:gravity="center"
             android:padding="10dp"
-            android:text="장소"
+            android:text="검색"
             android:textColor="#333333"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,6 +64,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/tv_search_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello FlexBus-Aos!"

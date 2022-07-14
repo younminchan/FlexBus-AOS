@@ -1,20 +1,22 @@
 package com.lotterental.flexbus_aos.network
 
-import com.google.gson.JsonObject
-import org.json.JSONObject
+import com.lotterental.flexbus_aos.data.BusRouteListItem
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Headers
+import retrofit2.http.Query
 
 interface RetrofitService {
 
-    //    @Headers("Content-Type: application/json")
+    @Headers("Content-Type: application/json")
     @GET("getBusRouteList")
     fun getBusRouteList(
-//        @Path("category") category:String
-    ): Call<ArrayList<JSONObject>>
+        @Query("ServiceKey") ServiceKey: String,
+        @Query("strSrch") strSrch: String,
+        @Query("resultType") resultType: String
+    ): Call<BusRouteListItem>
 
     companion object {
         var networkService: RetrofitService? = null

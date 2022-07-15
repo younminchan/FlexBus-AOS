@@ -1,19 +1,22 @@
 package com.lotterental.flexbus_aos
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lotterental.flexbus_aos.adapter.BusRouteListAdapter
-import com.lotterental.flexbus_aos.data.BusRouteItem
 import com.lotterental.flexbus_aos.data.BusRouteListItem
 import com.lotterental.flexbus_aos.databinding.FragmentSearchBinding
 import com.lotterental.flexbus_aos.repositroy.MainRepository
-import com.lotterental.flexbus_aos.viewmodel.MainViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,8 +48,23 @@ class SearchFragment : Fragment() {
             var searchBusNum:String = binding.etSearch.text.toString()
             if(!searchBusNum.isNullOrEmpty()) {
                 getBusRouteList(searchBusNum)
+
+                Toast.makeText(App.activity, "${searchBusNum} 노선번호 검색", Toast.LENGTH_SHORT).show()
             }
         }
+        binding.etSearch.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    binding.tvSearchInput.performClick()
+                    Utils.hideKeyboard()
+                    return true
+                } else {
+
+                    return false
+                }
+            }
+        })
+        binding.etSearch.filters = arrayOf(Utils.filterAlphaNumSpace)
 
         /** 버스정류소 RecyClerVIew */
         initRecyclerViewBusSearch()

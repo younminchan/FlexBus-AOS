@@ -42,8 +42,18 @@ class BusRouteListAdapter: RecyclerView.Adapter<BusRouteListAdapter.Holder>() {
         }
     }
 
+    /** Item 추가 */
     fun setItems(items: ArrayList<BusRouteItem>){
+        //TODO: 방법1
         this.items = items
         notifyDataSetChanged()
+
+        //TODO: 방법2(안됨)
+//        this.items = ArrayList<BusRouteItem>()
+//        items.forEach {
+//            this.items.add(it)
+//            notifyItemInserted(this.items.size)
+//
+//        }
     }
 }

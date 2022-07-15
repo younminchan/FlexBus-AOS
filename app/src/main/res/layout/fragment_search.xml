@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:rotation="180"
             android:src="@drawable/icon_gray_right"
+            android:focusable="false"
             app:layout_constraintBottom_toBottomOf="@+id/tv_search_input"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/et_search" />
@@ -35,7 +36,7 @@
             android:background="@drawable/box_round_white"
             android:gravity="left"
             android:hint="노선명 입력"
-            android:inputType="number"
+            android:inputType="text"
             android:maxLength="50"
             android:maxLines="1"
             android:padding="10dp"

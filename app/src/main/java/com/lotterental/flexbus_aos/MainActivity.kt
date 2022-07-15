@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     fun moveFragment(fActivity: FragmentActivity, fragment: Fragment, backStack: Boolean) {
         var tag = fragment.javaClass.simpleName
         var fragmentTransaction = fActivity.supportFragmentManager.beginTransaction()
-
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
         fragmentTransaction.replace(R.id.fragment_main, fragment)
 
         if (backStack) {
@@ -38,6 +38,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         fragmentTransaction.commit()
+    }
+
+    override fun onBackPressed() {
+        var backStackCount = supportFragmentManager.backStackEntryCount
+        if (backStackCount == 0) {
+            super.onBackPressed()
+        } else {
+            supportFragmentManager.popBackStack()
+        }
     }
 
 

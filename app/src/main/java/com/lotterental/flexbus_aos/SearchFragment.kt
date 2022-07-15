@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.lotterental.flexbus_aos.adapter.BusRouteListAdapter
+import com.lotterental.flexbus_aos.data.BusRouteItem
 import com.lotterental.flexbus_aos.data.BusRouteListItem
 import com.lotterental.flexbus_aos.databinding.FragmentSearchBinding
 import com.lotterental.flexbus_aos.repositroy.MainRepository
@@ -18,6 +20,7 @@ import retrofit2.Response
 
 class SearchFragment : Fragment() {
     lateinit var binding: FragmentSearchBinding
+    lateinit var busRouteListAdapter : BusRouteListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +30,6 @@ class SearchFragment : Fragment() {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         initSearchFragment()
-
 
         return binding.root
     }
@@ -51,23 +53,28 @@ class SearchFragment : Fragment() {
     }
 
     private fun initRecyclerViewBusSearch(){
+        busRouteListAdapter = BusRouteListAdapter()
+
         binding.rvBusRouteList.layoutManager = LinearLayoutManager(App.activity, LinearLayoutManager.VERTICAL, false)
-        binding.rvBusRouteList.adapter = RvAdapter(dataset)
+        binding.rvBusRouteList.adapter = busRouteListAdapter
     }
 
     private fun getBusRouteList(strSrch: String) {
         MainRepository().getBusRouteList(strSrch).enqueue(object : Callback<BusRouteListItem> {
             override fun onResponse(call: Call<BusRouteListItem>, response: Response<BusRouteListItem>, ) {
                 var res = response.body()
-                Log.e("YMC", "retrofit res: ${res}")
-                Log.e("YMC", "retrofit res item: ${res?.msgHeader?.headerMsg}")
-                Log.e("YMC", "retrofit res item: ${res?.msgBody?.itemList}")
+//                Log.e("YMC", "retrofit res: ${res}")
+//                Log.e("YMC", "retrofit res item: ${res?.msgHeader?.headerMsg}")
+//                Log.e("YMC", "retrofit res item: ${res?.msgBody?.itemList}")
 
-                res?.msgBody?.itemList?.forEach {
-                    Log.e("YMC","=====forRach: ${it}")
+//                res?.msgBody?.itemList?.forEach {
+//                    Log.e("YMC","=====forRach: ${it}")
+////                    vusRouteItemList.add(it)
+//                }
+
+                if(res?.msgBody?.itemList!=null && res?.msgBody?.itemList.size>0){
+                    busRouteListAdapter.setItems(res.msgBody.itemList)
                 }
-
-                binding.tvSearchFragment.text = res?.msgBody?.itemList.toString()
             }
 
             override fun onFailure(call: Call<BusRouteListItem>, t: Throwable) {

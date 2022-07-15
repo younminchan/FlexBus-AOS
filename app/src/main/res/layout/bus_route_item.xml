@@ -4,42 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv_routeType"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_route_item_main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#06B053"
-        android:padding="2dp"
-        android:text="지선"
-        android:textColor="#FFFFFF"
-        android:textSize="10dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tv_busRouteNm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:padding="2dp"
-        android:text="5634"
-        android:textColor="#000000"
-        android:textSize="10dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_routeType"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_routeType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#06B053"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="지선"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_StationNm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:text="광명공영차고지 ↔ 여의도"
-        android:textColor="#000000"
-        android:textSize="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_routeType" />
+        <TextView
+            android:id="@+id/tv_busRouteNm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="5634"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_routeType"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_StationNm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="광명공영차고지 ↔ 여의도"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_routeType" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

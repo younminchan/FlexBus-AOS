@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lotterental.flexbus_aos.data.BusRouteListItem
 import com.lotterental.flexbus_aos.databinding.FragmentSearchBinding
 import com.lotterental.flexbus_aos.repositroy.MainRepository
@@ -40,14 +41,21 @@ class SearchFragment : Fragment() {
         /** 노선번호 검색 */
         binding.tvSearchInput.setOnClickListener {
             var searchBusNum:String = binding.etSearch.text.toString()
-            if(!searchBusNum.isNullOrEmpty()){
+            if(!searchBusNum.isNullOrEmpty()) {
                 getBusRouteList(searchBusNum)
             }
-
         }
+
+        /** 버스정류소 RecyClerVIew */
+        initRecyclerViewBusSearch()
     }
 
-    fun getBusRouteList(strSrch: String) {
+    private fun initRecyclerViewBusSearch(){
+        binding.rvBusRouteList.layoutManager = LinearLayoutManager(App.activity, LinearLayoutManager.VERTICAL, false)
+        binding.rvBusRouteList.adapter = RvAdapter(dataset)
+    }
+
+    private fun getBusRouteList(strSrch: String) {
         MainRepository().getBusRouteList(strSrch).enqueue(object : Callback<BusRouteListItem> {
             override fun onResponse(call: Call<BusRouteListItem>, response: Response<BusRouteListItem>, ) {
                 var res = response.body()

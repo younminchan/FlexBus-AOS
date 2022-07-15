@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_search_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F0F0F0"
@@ -32,11 +33,11 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/box_round_white"
-            android:inputType="number"
             android:gravity="left"
             android:hint="노선명 입력"
-            android:maxLines="1"
+            android:inputType="number"
             android:maxLength="50"
+            android:maxLines="1"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="#000000"
@@ -63,14 +64,26 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/tv_search_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello FlexBus-Aos!"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_search_top">
+
+        <TextView
+            android:id="@+id/tv_search_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello FlexBus-Aos!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

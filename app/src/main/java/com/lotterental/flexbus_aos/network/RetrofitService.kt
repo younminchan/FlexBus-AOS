@@ -12,11 +12,7 @@ interface RetrofitService {
 
     @Headers("Content-Type: application/json")
     @GET("getBusRouteList")
-    fun getBusRouteList(
-        @Query("ServiceKey") ServiceKey: String,
-        @Query("strSrch") strSrch: String,
-        @Query("resultType") resultType: String
-    ): Call<BusRouteListItem>
+    fun getBusRouteList(@Query("ServiceKey") ServiceKey: String, @Query("strSrch") strSrch: String, @Query("resultType") resultType: String): Call<BusRouteListItem>
 
     companion object {
         var networkService: RetrofitService? = null

@@ -83,7 +83,8 @@ class SearchFragment : Fragment() {
     private fun getBusRouteList(strSrch: String) {
         MainRepository().getBusRouteList(strSrch).enqueue(object : Callback<BusRouteListItem> {
             override fun onResponse(call: Call<BusRouteListItem>, response: Response<BusRouteListItem>, ) {
-                var res = response.body()
+                if(response.isSuccessful){
+                    var res = response.body()
 //                Log.e("YMC", "retrofit res: ${res}")
 //                Log.e("YMC", "retrofit res item: ${res?.msgHeader?.headerMsg}")
 //                Log.e("YMC", "retrofit res item: ${res?.msgBody?.itemList}")
@@ -93,8 +94,9 @@ class SearchFragment : Fragment() {
 ////                    vusRouteItemList.add(it)
 //                }
 
-                if(res?.msgBody?.itemList!=null && res?.msgBody?.itemList.size>0){
-                    busRouteListAdapter.setItems(res.msgBody.itemList)
+                    if(res?.msgBody?.itemList!=null && res?.msgBody?.itemList.size>0){
+                        busRouteListAdapter.setItems(res.msgBody.itemList)
+                    }
                 }
             }
 
@@ -102,10 +104,5 @@ class SearchFragment : Fragment() {
                 t.printStackTrace()
             }
         })
-    }
-
-    fun moveBusRouteDetail(){
-        /** 버스도착정보 디테일 */
-        MainActivity.getInstance().moveFragment(requireActivity(), BusRouteDetailFragment(), true)
     }
 }

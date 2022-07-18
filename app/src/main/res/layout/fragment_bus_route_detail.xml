@@ -40,7 +40,6 @@
             android:maxLines="1"
             android:padding="10dp"
             android:singleLine="true"
-            android:text="6534"
             android:textColor="#000000"
             android:textSize="12dp"
             android:textStyle="bold"
@@ -85,10 +84,9 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_bus_route_list"
+                android:id="@+id/rv_bus_route_detail_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="#FFF0F0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lotterental.flexbus_aos.adapter.BusRouteDetailAdapter
 import com.lotterental.flexbus_aos.adapter.BusRouteListAdapter
 import com.lotterental.flexbus_aos.data.BusRouteDetatilItem
@@ -33,8 +34,6 @@ class BusRouteDetailFragment : Fragment() {
         binding = FragmentBusRouteDetailBinding.inflate(inflater, container, false)
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
-        //Bus name
-        binding.tvBusRouteDetailName.text = mainViewModel.busRouteDetailItem.value?.busRouteNm
 
         initBusRouteDetail()
 
@@ -42,7 +41,9 @@ class BusRouteDetailFragment : Fragment() {
     }
 
     private fun initBusRouteDetail(){
-        busRouteDetailAdapter = BusRouteDetailAdapter(this, mainViewModel)
+
+        //Bus name
+        binding.tvBusRouteDetailName.text = mainViewModel.busRouteDetailItem.value?.busRouteNm
 
         /** 뒤로가기 */
         binding.ivBack.setOnClickListener{
@@ -52,10 +53,18 @@ class BusRouteDetailFragment : Fragment() {
         mainViewModel.busRouteDetailItem.value?.busRouteId.let {
             if(!it.isNullOrEmpty()){
                 getBusRouteList(it)
-                Log.e("YMC", "통신 it: ${it}")
             }
         }
 
+        /** 버스정류소 RecyClerVIew */
+        initRecyclerViewBusRouteDetatil()
+    }
+
+    private fun initRecyclerViewBusRouteDetatil(){
+        busRouteDetailAdapter = BusRouteDetailAdapter(this, mainViewModel)
+
+        binding.rvBusRouteDetailList.layoutManager = LinearLayoutManager(App.activity, LinearLayoutManager.VERTICAL, false)
+        binding.rvBusRouteDetailList.adapter = busRouteDetailAdapter
     }
 
     private fun getBusRouteList(strSrch: String) {

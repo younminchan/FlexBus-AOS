@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         var tag = fragment.javaClass.simpleName
         var fragmentTransaction = fActivity.supportFragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-        fragmentTransaction.replace(R.id.fragment_main, fragment)
+        fragmentTransaction.add(R.id.fragment_main, fragment)
 
         if (backStack) {
             fragmentTransaction.addToBackStack(tag)

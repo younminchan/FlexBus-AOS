@@ -1,11 +1,19 @@
 package com.lotterental.flexbus_aos.viewmodel
 
 import androidx.annotation.MainThread
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.lotterental.flexbus_aos.data.BusRouteItem
 import com.lotterental.flexbus_aos.repositroy.MainRepository
 
 class MainViewModel : ViewModel() {
     private var mainRepository: MainRepository = MainRepository()
+
+    val busRouteDetailItem = MutableLiveData<BusRouteItem>()
+
+
+
+
 
 //    //getBusRouteList (노선번호에 해당하는 노선 목록 조회)
 //    private val _retrofitBusRouteItemList = MutableLiveData<ArrayList<BusRouteItem>>()

@@ -3,10 +3,14 @@ package com.lotterental.flexbus_aos.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.lotterental.flexbus_aos.BusRouteDetailFragment
+import com.lotterental.flexbus_aos.MainActivity
+import com.lotterental.flexbus_aos.SearchFragment
 import com.lotterental.flexbus_aos.data.BusRouteItem
 import com.lotterental.flexbus_aos.databinding.BusRouteItemBinding
+import com.lotterental.flexbus_aos.viewmodel.MainViewModel
 
-class BusRouteListAdapter: RecyclerView.Adapter<BusRouteListAdapter.Holder>() {
+class BusRouteListAdapter(private var fragment: SearchFragment, private var mainViewModel: MainViewModel): RecyclerView.Adapter<BusRouteListAdapter.Holder>() {
     private var items =  ArrayList<BusRouteItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BusRouteListAdapter.Holder {
@@ -15,7 +19,7 @@ class BusRouteListAdapter: RecyclerView.Adapter<BusRouteListAdapter.Holder>() {
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], mainViewModel, fragment)
     }
 
     override fun getItemCount(): Int {
@@ -23,7 +27,15 @@ class BusRouteListAdapter: RecyclerView.Adapter<BusRouteListAdapter.Holder>() {
     }
 
     class Holder(private val binding: BusRouteItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(data: BusRouteItem){
+        fun bind(data: BusRouteItem, mainViewModel: MainViewModel, fragment: SearchFragment) {
+            binding.clBusRouteItemMain.setOnClickListener {
+                mainViewModel.busRouteDetailItem.value = data
+
+                //버스도착정보 디테일로 이동
+                MainActivity.getInstance().moveFragment(fragment.requireActivity(), BusRouteDetailFragment(), true)
+            }
+
+
             binding.tvRouteType.text = when(data.routeType){
                 "1" -> "공항"
                 "2" -> "마을"

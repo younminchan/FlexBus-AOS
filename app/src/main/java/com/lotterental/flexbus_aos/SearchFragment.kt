@@ -1,8 +1,6 @@
 package com.lotterental.flexbus_aos
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -12,11 +10,13 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lotterental.flexbus_aos.adapter.BusRouteListAdapter
 import com.lotterental.flexbus_aos.data.BusRouteListItem
 import com.lotterental.flexbus_aos.databinding.FragmentSearchBinding
 import com.lotterental.flexbus_aos.repositroy.MainRepository
+import com.lotterental.flexbus_aos.viewmodel.MainViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +24,7 @@ import retrofit2.Response
 class SearchFragment : Fragment() {
     lateinit var binding: FragmentSearchBinding
     lateinit var busRouteListAdapter : BusRouteListAdapter
+    lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,7 @@ class SearchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
+        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
         initSearchFragment()
 
@@ -68,10 +70,11 @@ class SearchFragment : Fragment() {
 
         /** 버스정류소 RecyClerVIew */
         initRecyclerViewBusSearch()
+
     }
 
     private fun initRecyclerViewBusSearch(){
-        busRouteListAdapter = BusRouteListAdapter()
+        busRouteListAdapter = BusRouteListAdapter(this, mainViewModel)
 
         binding.rvBusRouteList.layoutManager = LinearLayoutManager(App.activity, LinearLayoutManager.VERTICAL, false)
         binding.rvBusRouteList.adapter = busRouteListAdapter
@@ -99,5 +102,10 @@ class SearchFragment : Fragment() {
                 t.printStackTrace()
             }
         })
+    }
+
+    fun moveBusRouteDetail(){
+        /** 버스도착정보 디테일 */
+        MainActivity.getInstance().moveFragment(requireActivity(), BusRouteDetailFragment(), true)
     }
 }

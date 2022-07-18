@@ -6,27 +6,12 @@ import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
 
 data class BusRouteListItem(
-    @SerializedName("comMsgHeader") val comMsgHeader: ComMsgHeader,
+    @SerializedName("comMsgHeader") val comMsg: ComMsgHeader,
     @SerializedName("msgHeader") val msgHeader: MsgHeader,
-    @SerializedName("msgBody") val msgBody: MsgBody
+    @SerializedName("msgBody") val msgBody: BusRouteListItem_MsgBody
 )
 
-data class ComMsgHeader(
-    @SerializedName("errMsg") val errMsg: Any,
-    @SerializedName("requestMsgID") val requestMsgID: Any,
-    @SerializedName("responseMsgID") val responseMsgID: Any,
-    @SerializedName("responseTime") val responseTime: Any,
-    @SerializedName("returnCode") val returnCode: Any,
-    @SerializedName("successYN") val successYN: Any
-)
-
-data class MsgHeader(
-    @SerializedName("headerCd") val headerCd: String,
-    @SerializedName("headerMsg") val headerMsg: String,
-    @SerializedName("itemCount") val itemCount: Int
-)
-
-data class MsgBody(
+data class BusRouteListItem_MsgBody(
     @SerializedName("itemList") val itemList: ArrayList<BusRouteItem> = ArrayList<BusRouteItem>() //각 항목 리스트
 )
 
@@ -42,8 +27,8 @@ data class BusRouteItem(
     @SerializedName("stStationNm")   val stStationNm: String,   //기점
     @SerializedName("edStationNm")   val edStationNm: String,   //종점
     @SerializedName("term")          val term: String,          //배차간격(분)
-    @SerializedName("firstLowTm")    val firstLowTm: String,
-    @SerializedName("lastBusYn")     val lastBusYn: String,
-    @SerializedName("lastLowTm")     val lastLowTm: String,
-    @SerializedName("length")        val length: String
+    @SerializedName("firstLowTm")    val firstLowTm: String,    //금일저상첫차시간
+    @SerializedName("lastLowTm")     val lastLowTm: String,     //금일저상막차시간
+    @SerializedName("lastBusYn")     val lastBusYn: String,     //막차운행여부
+    @SerializedName("length")        val length: String         //노선 길이 (Km)
 )

@@ -28,12 +28,15 @@ class BusRouteDetailAdapter(private var fragment: BusRouteDetailFragment, privat
 
     class Holder(private val binding: BusRouteDetailItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: BusRouteDetatilItem_item, mainViewModel: MainViewModel, items: ArrayList<BusRouteDetatilItem_item>) {
+            /** 정류소 명 */
             binding.tvBusRouteDetailBusArsName.text = data.stNm
-            binding.tvBusRouteDetailBusArsNumber.text = data.arsId
+            /** 정류소 고유번호 */
+            binding.tvBusRouteDetailBusArsNumber.text = if(data.arsId == "0") data.arsId else "00000"
+
 
             Log.e("YMC", "position: ${items.indexOf(data) }")
 
-            //시작 / 끝
+            /** 정류소 시작 / 끝 */
             if ((items.indexOf(data) == 0) || items.indexOf(data) == items.size) {
                 binding.ivBusRouteDetailLineTop.visibility = View.INVISIBLE
             } else {
@@ -41,14 +44,14 @@ class BusRouteDetailAdapter(private var fragment: BusRouteDetailFragment, privat
             }
 
 
-            //버스 도착
+            /** 버스 도착 */
             if (data.arrmsg1.contains("[0번째 전") || data.arrmsg1.contains("곧 도착")) {
                 binding.ivBusRouteDetailLineBus.visibility = View.VISIBLE
             } else {
                 binding.ivBusRouteDetailLineBus.visibility = View.INVISIBLE
             }
 
-            //도착 버스정보
+            /** 도착 버스정보 */
             if (binding.ivBusRouteDetailLineBus.visibility == View.VISIBLE && !data.plainNo1.trim().isNullOrEmpty()
                 && data.plainNo1.trim().isNotEmpty() && data.plainNo1.trim().length >= 4) {
                 binding.tvBusRouteDetailBusNumber.visibility = View.VISIBLE

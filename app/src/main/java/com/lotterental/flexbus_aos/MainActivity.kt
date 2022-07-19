@@ -27,7 +27,10 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
+    /** Fragment이동 */
     fun moveFragment(fActivity: FragmentActivity, fragment: Fragment, backStack: Boolean) {
+        Utils.hideKeyboard()
+
         var tag = fragment.javaClass.simpleName
         var fragmentTransaction = fActivity.supportFragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)

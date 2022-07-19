@@ -8,16 +8,26 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0"
+        app:layout_constraintBottom_toBottomOf="@+id/cl_bus_route_detail_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_bus_route_detail_bus_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/box_round_white"
+        android:layout_margin="4dp"
+        android:background="@drawable/box_round_white_10"
         android:gravity="center"
         android:padding="4dp"
         android:text="1925\n저상"
         android:textSize="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +35,6 @@
         android:id="@+id/cl_bus_route_detail_line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_bus_route_detail_bus_number"
         app:layout_constraintTop_toTopOf="parent">
@@ -52,50 +60,60 @@
             app:layout_constraintStart_toStartOf="@+id/iv_bus_route_detail_line_center" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_bus_route_detail_line_bus"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_bus__"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/iv_bus_route_detail_line_center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_bus_route_detail_line_top" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_bus_route_detail_line_center"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:src="@drawable/check_checked"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_bus_route_detail_bus_ars"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cl_bus_route_detail_line"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_bus_route_detail_bus_ars_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="광명공영차고지기점"
-            android:textSize="12dp"
+            android:text="ex) 광명공영차고지기점"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_bus_route_detail_bus_ars_number"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="14328"
-            android:textSize="12dp"
+            android:text="ex) 14328"
             android:textColor="#B5B5B5"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bus_route_detail_bus_ars_name"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_bus_route_detail_bus_ars_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_bus_route_detail_star"
@@ -108,17 +126,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_bottom_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F0F0F0"
-        app:layout_constraintBottom_toBottomOf="@+id/cl_bus_route_detail_line"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

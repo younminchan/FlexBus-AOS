@@ -27,7 +27,7 @@ class MainFragment : Fragment() {
     private fun initMainFragment() {
         /** 검색창 이동 */
         binding.tvSearch.setOnClickListener {
-            MainActivity.getInstance().moveFragment(requireActivity(), SearchFragment(), true)
+            MainActivity.getInstance().moveFragment(requireActivity(), SearchFragment(), true,true)
         }
     }
 }

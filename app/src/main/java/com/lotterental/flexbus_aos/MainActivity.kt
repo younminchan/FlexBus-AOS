@@ -28,13 +28,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     /** Fragment이동 */
-    fun moveFragment(fActivity: FragmentActivity, fragment: Fragment, backStack: Boolean) {
+    fun moveFragment(fActivity: FragmentActivity, fragment: Fragment, replace: Boolean, backStack: Boolean) {
         Utils.hideKeyboard()
 
         var tag = fragment.javaClass.simpleName
         var fragmentTransaction = fActivity.supportFragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-        fragmentTransaction.add(R.id.fragment_main, fragment)
+
+        if(replace){
+            fragmentTransaction.replace(R.id.fragment_main, fragment)
+        }else{
+            fragmentTransaction.add(R.id.fragment_main, fragment)
+        }
 
         if (backStack) {
             fragmentTransaction.addToBackStack(tag)

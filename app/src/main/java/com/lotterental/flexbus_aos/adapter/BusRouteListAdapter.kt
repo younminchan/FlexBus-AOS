@@ -32,7 +32,7 @@ class BusRouteListAdapter(private var fragment: SearchFragment, private var main
                 mainViewModel.busRouteDetailItem.value = data
 
                 //버스도착정보 디테일로 이동
-                MainActivity.getInstance().moveFragment(fragment.requireActivity(), BusRouteDetailFragment(), true)
+                MainActivity.getInstance().moveFragment(fragment.requireActivity(), BusRouteDetailFragment(), true, true)
             }
 
 

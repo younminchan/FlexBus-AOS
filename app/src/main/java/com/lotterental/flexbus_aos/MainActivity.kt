@@ -27,21 +27,24 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    /** Fragment이동 */
-    fun moveFragment(fActivity: FragmentActivity, fragment: Fragment, FragmentAdd: Boolean, backStack: Boolean) {
+    /** Fragment이동
+     * fragmentAdd: Fragment를 Add or Replace 조건설정
+     * addBackStack: Fragment를 Stack에 쌓을 조건 설정
+     * */
+    fun moveFragment(fActivity: FragmentActivity, fragment: Fragment, fragmentAdd: Boolean, addBackStack: Boolean) {
         Utils.hideKeyboard()
 
         var tag = fragment.javaClass.simpleName
         var fragmentTransaction = fActivity.supportFragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
 
-        if(FragmentAdd){
+        if(fragmentAdd){
             fragmentTransaction.add(R.id.fragment_main, fragment)
         }else{
             fragmentTransaction.replace(R.id.fragment_main, fragment)
         }
 
-        if (backStack) {
+        if (addBackStack) {
             fragmentTransaction.addToBackStack(tag)
         }
 
